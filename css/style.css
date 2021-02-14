@@ -35,7 +35,7 @@ header h1 {
   color: #444;
 }
 
-#form-submit input, #form-submit select {
+#form-submit input, #form-submit select, #form-submit button {
   border-radius: 10px;
   border: none;
   -webkit-box-shadow: 1px 3px 6px rgba(108, 49, 255, 0.3);
