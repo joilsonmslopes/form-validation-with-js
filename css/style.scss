@@ -1,0 +1,99 @@
+$purple: #6C31FF;
+$error: #FF3333;
+$success: #22bb33;
+
+.row {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(180deg, $purple 0%, rgba(149, 83, 250, 0.7) 100%);
+}
+
+.hide {
+    display: none;
+}
+
+header {
+    h1 {
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+    }
+}
+
+#form-submit {
+    background-color: #fff;
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+
+    h2 {
+        font-family: 'Montserrat', sans-serif;
+        color: #444;
+    }
+
+    input, select {
+        border-radius: 10px;
+        border: none;
+        box-shadow: 1px 3px 6px rgba($color: $purple, $alpha: .3);
+        font-size: 1em;
+    }
+
+    .inputValidation {
+        position: relative;
+
+        i.fa-check-circle {
+            display: none;
+        }
+
+        i.fa-exclamation-circle {
+            display: none;
+        }
+
+        span {
+            display: none;
+        }
+    }
+
+    .inputValidation.error {
+        i.fa-exclamation-circle {
+            display: block;
+            position: absolute;
+            top: 12px;
+            right: 10px;
+            color: $error;
+        }
+
+        input {
+            border: 1px solid $error;
+        }
+
+        span {
+            display: block;
+            color: $error;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+        }
+    }
+
+    .inputValidation.success {
+        i.fa-check-circle {
+            display: block;
+            position: absolute;
+            top: 12px;
+            right: 10px;
+            color: $success;
+        }
+
+        input {
+            border: 1px solid $success;
+        }
+    }
+}

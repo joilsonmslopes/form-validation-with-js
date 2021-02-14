@@ -1,1 +1,92 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+.row {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  background: -webkit-gradient(linear, left top, left bottom, from(#6C31FF), to(rgba(149, 83, 250, 0.7)));
+  background: linear-gradient(180deg, #6C31FF 0%, rgba(149, 83, 250, 0.7) 100%);
+}
+
+.hide {
+  display: none;
+}
+
+header h1 {
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#form-submit {
+  background-color: #fff;
+  width: 100%;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+#form-submit h2 {
+  font-family: 'Montserrat', sans-serif;
+  color: #444;
+}
+
+#form-submit input, #form-submit select {
+  border-radius: 10px;
+  border: none;
+  -webkit-box-shadow: 1px 3px 6px rgba(108, 49, 255, 0.3);
+          box-shadow: 1px 3px 6px rgba(108, 49, 255, 0.3);
+  font-size: 1em;
+}
+
+#form-submit .inputValidation {
+  position: relative;
+}
+
+#form-submit .inputValidation i.fa-check-circle {
+  display: none;
+}
+
+#form-submit .inputValidation i.fa-exclamation-circle {
+  display: none;
+}
+
+#form-submit .inputValidation span {
+  display: none;
+}
+
+#form-submit .inputValidation.error i.fa-exclamation-circle {
+  display: block;
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  color: #FF3333;
+}
+
+#form-submit .inputValidation.error input {
+  border: 1px solid #FF3333;
+}
+
+#form-submit .inputValidation.error span {
+  display: block;
+  color: #FF3333;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+}
+
+#form-submit .inputValidation.success i.fa-check-circle {
+  display: block;
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  color: #22bb33;
+}
+
+#form-submit .inputValidation.success input {
+  border: 1px solid #22bb33;
+}
+/*# sourceMappingURL=style.css.map */
