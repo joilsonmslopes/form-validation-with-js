@@ -3,6 +3,7 @@ const formSubmit = document.querySelector("#formSubmit");
 const fullName = document.querySelector("#name");
 const cpf = document.querySelector("#cpf");
 const cep = document.querySelector("#cep");
+const numberAddress = document.querySelector("#numero");
 
 async function getCEP(cepValue) {
     const options = {
@@ -33,6 +34,10 @@ cpf.addEventListener("input", () => {
 
 cep.addEventListener("input", e => {
     inputCepCheck();
+});
+
+numberAddress.addEventListener("input", () => {
+    inputNumberAddressCheck();
 });
 
 
@@ -142,11 +147,32 @@ async function inputCepCheck() {
     return false;
 };
 
+/** Input Number validation */
+function inputNumberAddressCheck() {
+    const numberAddressValue = numberAddress.value.trim();
+
+    if (numberAddressValue === "" || numberAddressValue === null || numberAddressValue === undefined) {
+        setErrorFor(numberAddress, "Este campo é requerido");
+        return false;
+    }
+
+    setSuccessFor(numberAddress);
+    return true;
+}
+
+/** ONLY NUMBERS FIELD NUMBER */
+numberAddress.addEventListener('keydown', function(e) {
+  var numero = (e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105);
+  var controlos = [8, 37, 39].includes(e.keyCode);
+  if (!numero && !controlos) return e.preventDefault();
+});
+
 async function inputCheckAll() {
     const resultFecth = await inputCepCheck();
 
     return inputNameCheck()
     && inputCpfCheck()
+    && inputNumberAddressCheck()
     && resultFecth
 }
 
