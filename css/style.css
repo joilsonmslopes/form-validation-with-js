@@ -70,7 +70,7 @@ header h1 {
 
 #form-submit .inputValidation.error input, #form-submit .inputValidation.error select {
   border: 1px solid #FF3333;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 #form-submit .inputValidation.success i.fa-check-circle {

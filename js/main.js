@@ -26,6 +26,34 @@ cep.addEventListener("input", e => {
     inputCepCheck();
 });
 
+fullName.addEventListener("input", () => {
+    inputNameCheck();
+});
+
+function inputNameCheck() {
+    const fullNameValue = fullName.value.trim();
+    const re = /^[A-Za-záàâãéèêíïóôõöüúçñÁÀÂÃÉÈÍÏÓÔÕÖÜÚÇÑ ]+$/;
+
+    if (fullNameValue === "" || fullNameValue === null || fullNameValue === undefined) {
+        setErrorFor(fullName, "Este campo é requerido");
+        return false;
+    }
+
+    if (fullNameValue.length < 3) {
+        setErrorFor(fullName, "Este campo precisa ter pelo menos 3 caracteres");
+        return false;
+    }
+
+    if(!re.test(fullNameValue)) {
+        setErrorFor(fullName, "Este campo não aceita número e nem caracteres especiais");
+        return false;
+    }
+
+    setSuccessFor(fullName);
+    return true;
+
+}
+
 async function inputCepCheck() {
     const cepValue = cep.value.trim().replace("-", "");
 
@@ -64,7 +92,7 @@ async function inputCepCheck() {
 async function inputCheckAll() {
     const resultFecth = await inputCepCheck();
 
-    return resultFecth;
+    return inputNameCheck() && resultFecth;
 }
 
 btnSubmit.addEventListener("click", async(e) => {
