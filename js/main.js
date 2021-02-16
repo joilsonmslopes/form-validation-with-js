@@ -3,14 +3,17 @@ const formSubmit = document.querySelector("#formSubmit");
 const fullName = document.querySelector("#name");
 const cpf = document.querySelector("#cpf");
 const cep = document.querySelector("#cep");
+const address = document.querySelector("#logradouro");
 const numberAddress = document.querySelector("#numero");
+const uf = document.querySelector("#uf");
+const city = document.querySelector("#localidade");
 
 async function getCEP(cepValue) {
     const options = {
         method: "GET",
         mode: "cors",
         cache: "default"
-    }
+    };
 
     try {
         const url = await `https://viacep.com.br/ws/${cepValue}/json/`;
@@ -22,7 +25,7 @@ async function getCEP(cepValue) {
         console.log(error);
         return {erro: true}
     }
-}
+};
 
 fullName.addEventListener("input", () => {
     inputNameCheck();
@@ -30,16 +33,27 @@ fullName.addEventListener("input", () => {
 
 cpf.addEventListener("input", () => {
     inputCpfCheck();
-})
+});
 
 cep.addEventListener("input", e => {
     inputCepCheck();
+});
+
+address.addEventListener("input", () => {
+    inputAddressCheck();
 });
 
 numberAddress.addEventListener("input", () => {
     inputNumberAddressCheck();
 });
 
+uf.addEventListener("input", () => {
+    inputUfCheck();
+});
+
+city.addEventListener("input", () => {
+    inputCityCheck();
+});
 
 function inputNameCheck() {
     const fullNameValue = fullName.value.trim();
@@ -63,7 +77,7 @@ function inputNameCheck() {
     setSuccessFor(fullName);
     return true;
 
-}
+};
 
 /** CPF Validation */
 function inputCpfCheck() {
@@ -147,12 +161,24 @@ async function inputCepCheck() {
     return false;
 };
 
-/** Input Number validation */
+function inputAddressCheck() {
+    const addressValue = address.value.trim();
+
+    if (addressValue === "" || addressValue === null || addressValue === undefined) {
+        setErrorFor(address, "Este campo é requerido");
+        return false;
+    }
+
+    setSuccessFor(address);
+    return true;
+};
+
+
 function inputNumberAddressCheck() {
     const numberAddressValue = numberAddress.value.trim();
 
     if (numberAddressValue === "" || numberAddressValue === null || numberAddressValue === undefined) {
-        setErrorFor(numberAddress, "Este campo é requerido");
+        setErrorFor(numberAddress, "Campo requerido");
         return false;
     }
 
@@ -167,13 +193,52 @@ numberAddress.addEventListener('keydown', function(e) {
   if (!numero && !controlos) return e.preventDefault();
 });
 
+function inputUfCheck() {
+    const ufValue = uf.value.trim();
+    const re = /^[A-Z]+$/;
+
+    if (ufValue === "" || ufValue === null || ufValue === undefined) {
+        setErrorFor(uf, "Campo requerido");
+        return false;
+    }
+
+    if(!re.test(ufValue) || ufValue.length < 2) {
+        setErrorFor(uf, "Ex: SP");
+        return false;
+    }
+
+    setSuccessFor(uf);
+    return true;
+}
+
+function inputCityCheck() {
+    const cityValue = city.value.trim();
+    const re = /^[A-Za-záàâãéèêíïóôõöüúçñÁÀÂÃÉÈÍÏÓÔÕÖÜÚÇÑ ]+$/;
+
+    if (cityValue === "" || cityValue === null || cityValue === undefined) {
+        setErrorFor(city, "Este campo é requerido");
+        return false;
+    }
+
+    if(!re.test(cityValue)) {
+        setErrorFor(city, "Apenas letras e acentuações");
+        return false;
+    }
+
+    setSuccessFor(city);
+    return true;
+}
+
 async function inputCheckAll() {
     const resultFecth = await inputCepCheck();
 
     return inputNameCheck()
     && inputCpfCheck()
-    && inputNumberAddressCheck()
     && resultFecth
+    && inputAddressCheck()
+    && inputNumberAddressCheck()
+    && inputUfCheck()
+    && inputCityCheck()
 }
 
 btnSubmit.addEventListener("click", async(e) => {
