@@ -1,3 +1,18 @@
+var CpfCnpjMaskBehavior = function (val) {
+    return val.replace(/\D/g, '').length <= 11 ? '000.000.000-009' : '00.000.000/0000-00';
+},
+cpfCnpjpOptions = {
+onKeyPress: function(val, e, field, options) {
+  field.mask(CpfCnpjMaskBehavior.apply({}, arguments), options);
+}
+};
+
+$(document).ready(function() {
+    $("#cpf").mask(CpfCnpjMaskBehavior, cpfCnpjpOptions);
+    $("#cep").mask("00000-000");
+    $("#telefone").mask("(00) 00000-0000");
+})
+
 const btnSubmit = document.querySelector("#btnSubmit");
 const formSubmit = document.querySelector("#formSubmit");
 const fullName = document.querySelector("#name");
@@ -7,6 +22,9 @@ const address = document.querySelector("#logradouro");
 const numberAddress = document.querySelector("#numero");
 const uf = document.querySelector("#uf");
 const city = document.querySelector("#localidade");
+const phone = document.querySelector("#telefone");
+const email = document.querySelector("#email");
+const emailConfirm = document.querySelector("#email-confirm");
 
 async function getCEP(cepValue) {
     const options = {
@@ -55,6 +73,18 @@ city.addEventListener("input", () => {
     inputCityCheck();
 });
 
+phone.addEventListener("input", () => {
+    inputPhoneCheck();
+});
+
+email.addEventListener("input", () => {
+    inputEmailCheck();
+});
+
+emailConfirm.addEventListener("input", () => {
+    inputEmailConfirmCheck();
+});
+
 function inputNameCheck() {
     const fullNameValue = fullName.value.trim();
     const re = /^[A-Za-záàâãéèêíïóôõöüúçñÁÀÂÃÉÈÍÏÓÔÕÖÜÚÇÑ ]+$/;
@@ -87,10 +117,6 @@ function inputCpfCheck() {
     let firstTenDigits = multiplyNumbers(10, onlyNumbers, 11);
     let restOfDivision1 = getVerificationNumber(firstNineDigits);
     let restOfDivision2 = getVerificationNumber(firstTenDigits);
-    console.log("firstNineDigits: ", firstNineDigits);
-    console.log("firstTenDigits: ", firstTenDigits);
-    console.log("restOfDivision1: ", restOfDivision1);
-    console.log("restOfDivision2: ", restOfDivision2);
 
     if(cpfValue === "" || cpfValue === null || cpfValue === undefined) {
         setErrorFor(cpf, "Este campo é requerido")
@@ -227,7 +253,67 @@ function inputCityCheck() {
 
     setSuccessFor(city);
     return true;
+};
+
+function inputPhoneCheck() {
+    const phoneValue = phone.value.trim().replace(/\D/g, "").replace("(", "").replace(")", "").replace(" ", "").replace("-", "");
+    console.log(phoneValue)
+
+    if (phoneValue === "" || phoneValue === null || phoneValue === undefined) {
+        setErrorFor(phone, "Este campo é requerido");
+        return false;
+    }
+
+    if (phoneValue.length < 10) {
+        setErrorFor(phone, "Por favor, preencher um celular válido");
+        return false;
+    }
+
+
+    setSuccessFor(phone);
+    return true;
 }
+
+function inputEmailCheck() {
+    const emailValue = email.value.trim();
+
+    if (emailValue === "" || emailValue === null || emailValue === undefined) {
+        setErrorFor(email, "Este campo é requerido");
+        return false;
+    }
+
+    if (!isEmail(emailValue)) {
+        setErrorFor(email, "Por favor, preencher um e-mail válido");
+        return true;
+    }
+
+    setSuccessFor(email);
+    return true;
+}
+
+function inputEmailConfirmCheck() {
+    const emailConfirmValue = emailConfirm.value.trim();
+    const emailValue = email.value.trim();
+
+    if (emailConfirmValue === "" || emailConfirmValue === null || emailConfirmValue === undefined) {
+        setErrorFor(emailConfirm, "Este campo é requerido");
+        return false;
+    }
+
+    if (!isEmail(emailConfirmValue)) {
+        setErrorFor(emailConfirm, "Por favor, preencher um e-mail válido");
+        return true;
+    }
+
+    if(emailConfirmValue !== emailValue) {
+        setErrorFor(emailConfirm, "Por favor, fornecer o mesmo e-mail")
+        return false;
+    }
+
+    setSuccessFor(emailConfirm);
+    return true;
+}
+
 
 async function inputCheckAll() {
     const resultFecth = await inputCepCheck();
@@ -239,6 +325,9 @@ async function inputCheckAll() {
     && inputNumberAddressCheck()
     && inputUfCheck()
     && inputCityCheck()
+    && inputPhoneCheck()
+    && inputEmailCheck()
+    && inputEmailConfirmCheck()
 }
 
 btnSubmit.addEventListener("click", async(e) => {
@@ -266,6 +355,12 @@ function setSuccessFor(input) {
 
     inputValidation.classList.remove("error");
     inputValidation.classList.add("success");
+}
+
+
+// regex de email
+function isEmail(email) {
+	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
 
 function hideCEPInputs() {
