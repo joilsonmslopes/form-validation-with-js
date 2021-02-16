@@ -13,8 +13,7 @@ h1, h2, h3, h4, p {
 }
 
 body {
-    height: 100vh;
-    background: linear-gradient(180deg, $purple 0%, rgba(149, 83, 250, 0.7) 100%);
+    background: $purple;
 }
 
 .hide {
@@ -33,6 +32,7 @@ header {
     width: 100%;
     padding: 20px;
     border-radius: 20px;
+    box-shadow: 1px 3px 6px rgba($color: $purple, $alpha: .3);
 
     h2 {
         font-family: 'Montserrat', sans-serif;
@@ -46,54 +46,63 @@ header {
         font-size: 1em;
     }
 
+    button.btn.btn-success {
+        background-color: #6CB310;
+    }
+
     .inputValidation {
         position: relative;
 
-        i.fa-check-circle {
-            display: none;
-        }
-
-        i.fa-exclamation-circle {
-            display: none;
-        }
-
-        span {
-            display: none;
-        }
-    }
-
-    .inputValidation.error {
-        i.fa-exclamation-circle {
-            display: block;
+        i {
             position: absolute;
             top: 12px;
             right: 10px;
-            color: $error;
+            visibility: hidden;
         }
 
-        input {
-            border: 1px solid $error;
+        &.error {
+            i.fa-exclamation-circle {
+                color: $error;
+                visibility: visible;
+            }
+    
+            small {
+                color: $error;
+                visibility: visible;
+            }
+    
+            input, select {
+                border: 1px solid $error;
+                margin-bottom: 12px;
+            }
         }
 
-        span {
-            display: block;
-            color: $error;
+        &.success {
+            i.fa-check-circle {
+                color: $success;
+                visibility: visible;
+            }
+    
+            input, select {
+                border: 1px solid $success;
+            }
+        }
+
+        small {
+            visibility: hidden;
+            position: absolute;
+            top: 36px;
+            left: 10px;
+            font-size: 12px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 10px;
         }
     }
+}
 
-    .inputValidation.success {
-        i.fa-check-circle {
-            display: block;
-            position: absolute;
-            top: 12px;
-            right: 10px;
-            color: $success;
-        }
-
-        input {
-            border: 1px solid $success;
-        }
+footer {
+    h2 {
+        font-size: 16px;
+        font-family: 'Montserrat', sans-serif;
+        padding: 40px;
     }
 }

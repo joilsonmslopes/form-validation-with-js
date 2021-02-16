@@ -17,7 +17,7 @@
     <div class="container">
         <div class="row">
             <header class="w-100">
-                <div class="col-12 py-5">
+                <div class="col-12 py-3">
                     <h1 class="text-center text-uppercase">Tela de Login</h1>
                 </div>
             </header>
@@ -25,75 +25,87 @@
             <section>
                 <div class="col-md-6" id="form-submit">
                     <h2 class="mb-4 text-center text-uppercase">Faça seu cadastro</h2>
-                    <form>
+                    <form action="ok.html" method="get" id="formSubmit">
                         <div class="form-row">
-                            <div class="col-md-6 inputValidation">
+                            <div class="col-lg-6 mt-3 inputValidation">
                                 <input class="form-control" type="text" name="name" id="name" placeholder="Nome">
                                 <i class="fas fa-check-circle"></i>
                                 <i class="fas fa-exclamation-circle"></i>
-                                <span class="error">Error Message</span>
+                                <small class="error">Error Message</small>
                             </div>
-                            <div class="col-md-6 inputValidation">
+
+                            <div class="col-lg-6 mt-3 inputValidation">
                                 <input class="form-control" type="text" name="cpf" id="cpf" placeholder="CPF">
                                 <i class="fas fa-check-circle"></i>
                                 <i class="fas fa-exclamation-circle"></i>
-                                <span class="error">Error Message</span>
+                                <small class="error">Error Message</small>
                             </div>
     
-                            <div class="col-md-6 inputValidation mt-3">
+                            <div class="col-lg-6 mt-3 inputValidation">
                                 <input class="form-control" type="text" name="cep" id="cep" placeholder="CEP (Ex: 12345-123)">
                                 <i class="fas fa-check-circle"></i>
                                 <i class="fas fa-exclamation-circle"></i>
-                                <span class="error">Error Message</span>
+                                <small class="error">Error Message</small>
                             </div>
-                            <div class="col-md-6 inputValidation hide mt-3">
+
+                            <div class="col-lg-6 mt-3 inputValidation hide addressVerify">
                                 <input class="form-control" type="text" name="logradouro" id="logradouro" placeholder="Rua">
                                 <i class="fas fa-check-circle"></i>
                                 <i class="fas fa-exclamation-circle"></i>
-                                <span class="error">Error Message</span>
+                                <small class="error">Error Message</small>
                             </div>
     
-                            <div class="col-md-2 inputValidation hide mt-3">
+                            <div class="col-lg-2 mt-3 inputValidation hide addressVerify">
                                 <input class="form-control" type="text" name="numero" id="numero" placeholder="Nº">
                                 <i class="fas fa-check-circle"></i>
                                 <i class="fas fa-exclamation-circle"></i>
-                                <span class="error">Error Message</span>
+                                <small class="error">Error Message</small>
                             </div>
-                            <div class="col-md-4 inputValidation hide mt-3">
+
+                            <div class="col-lg-4 mt-3 inputValidation hide addressVerify">
                                 <input class="form-control" type="text" name="complemento" id="complemento" placeholder="Complemento">
                                 <i class="fas fa-check-circle"></i>
                                 <i class="fas fa-exclamation-circle"></i>
-                                <span class="error">Error Message</span>
+                                <small class="error">Error Message</small>
                             </div>
     
-                            <div class="col-md-2 inputValidation hide error mt-3">
+                            <div class="col-lg-2 mt-3 inputValidation hide addressVerify">
                                 <input class="form-control" type="text" name="uf" id="uf" placeholder="UF">
                                 <i class="fas fa-check-circle"></i>
                                 <i class="fas fa-exclamation-circle"></i>
-                                <span class="error">Error Message</span>
+                                <small class="error">Error Message</small>
                             </div>
-                            <div class="col-md-4 inputValidation hide mt-3">
+
+                            <div class="col-lg-4 mt-3 inputValidation hide addressVerify">
                                 <input class="form-control" type="text" name="localidade" id="localidade" placeholder="Cidade">
                                 <i class="fas fa-check-circle"></i>
                                 <i class="fas fa-exclamation-circle"></i>
-                                <span class="error">Error Message</span>
+                                <small class="error">Error Message</small>
+                            </div>
+
+                            <div class="col-lg-6 mt-3 inputValidation">
+                                <input class="form-control" type="text" name="telefone" id="telefone" placeholder="Celular">
+                                <i class="fas fa-check-circle"></i>
+                                <i class="fas fa-exclamation-circle"></i>
+                                <small class="error">Error Message</small>
                             </div>
     
-                            <div class="col-md-6 inputValidation mt-3">
+                            <div class="col-lg-6 mt-3 inputValidation">
                                 <input class="form-control" type="text" name="email" id="email" placeholder="E-mail">
                                 <i class="fas fa-check-circle"></i>
                                 <i class="fas fa-exclamation-circle"></i>
-                                <span class="error">Error Message</span>
+                                <small class="error">Error Message</small>
                             </div>
-                            <div class="col-md-6 inputValidation mt-3">
+
+                            <div class="col-lg-6 mt-3 inputValidation">
                                 <input class="form-control" type="text" name="email-confirm" id="email-confirm" placeholder="Confirme seu e-mail">
                                 <i class="fas fa-check-circle"></i>
                                 <i class="fas fa-exclamation-circle"></i>
-                                <span class="error">Error Message</span>
+                                <small class="error">Error Message</small>
                             </div>
 
                             <div class="col-12 mt-5 text-center">
-                                <button type="submit" class="btn btn-success btnSubmit w-75 text-uppercase">Cadastrar</button>
+                                <button type="submit" class="btn btn-success w-75 text-uppercase" id="btnSubmit">Cadastrar</button>
                             </div>
                         </div>
                     </form>
@@ -102,9 +114,18 @@
     
                 </div>
             </section>
-            
         </div>
     </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 w-100 align-items-center justify-content-center">
+                    <h2 class="text-center text-white">Todos os direitos reservados</h2>
+                </div>
+            </div>
+        </div>
+    </footer>
     
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

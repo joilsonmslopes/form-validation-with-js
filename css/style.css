@@ -9,9 +9,7 @@ h1, h2, h3, h4, p {
 }
 
 body {
-  height: 100vh;
-  background: -webkit-gradient(linear, left top, left bottom, from(#6C31FF), to(rgba(149, 83, 250, 0.7)));
-  background: linear-gradient(180deg, #6C31FF 0%, rgba(149, 83, 250, 0.7) 100%);
+  background: #6C31FF;
 }
 
 .hide {
@@ -28,6 +26,8 @@ header h1 {
   width: 100%;
   padding: 20px;
   border-radius: 20px;
+  -webkit-box-shadow: 1px 3px 6px rgba(108, 49, 255, 0.3);
+          box-shadow: 1px 3px 6px rgba(108, 49, 255, 0.3);
 }
 
 #form-submit h2 {
@@ -43,50 +43,57 @@ header h1 {
   font-size: 1em;
 }
 
+#form-submit button.btn.btn-success {
+  background-color: #6CB310;
+}
+
 #form-submit .inputValidation {
   position: relative;
 }
 
-#form-submit .inputValidation i.fa-check-circle {
-  display: none;
-}
-
-#form-submit .inputValidation i.fa-exclamation-circle {
-  display: none;
-}
-
-#form-submit .inputValidation span {
-  display: none;
+#form-submit .inputValidation i {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  visibility: hidden;
 }
 
 #form-submit .inputValidation.error i.fa-exclamation-circle {
-  display: block;
-  position: absolute;
-  top: 12px;
-  right: 10px;
   color: #FF3333;
+  visibility: visible;
 }
 
-#form-submit .inputValidation.error input {
+#form-submit .inputValidation.error small {
+  color: #FF3333;
+  visibility: visible;
+}
+
+#form-submit .inputValidation.error input, #form-submit .inputValidation.error select {
   border: 1px solid #FF3333;
-}
-
-#form-submit .inputValidation.error span {
-  display: block;
-  color: #FF3333;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 10px;
+  margin-bottom: 12px;
 }
 
 #form-submit .inputValidation.success i.fa-check-circle {
-  display: block;
-  position: absolute;
-  top: 12px;
-  right: 10px;
   color: #22bb33;
+  visibility: visible;
 }
 
-#form-submit .inputValidation.success input {
+#form-submit .inputValidation.success input, #form-submit .inputValidation.success select {
   border: 1px solid #22bb33;
+}
+
+#form-submit .inputValidation small {
+  visibility: hidden;
+  position: absolute;
+  top: 36px;
+  left: 10px;
+  font-size: 12px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+footer h2 {
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  padding: 40px;
 }
 /*# sourceMappingURL=style.css.map */
