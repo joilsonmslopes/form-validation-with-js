@@ -27,12 +27,15 @@ header {
     }
 }
 
+
 #form-submit {
     background-color: #fff;
     width: 100%;
     padding: 20px;
     border-radius: 20px;
     box-shadow: 1px 3px 6px rgba($color: $purple, $alpha: .3);
+    margin: 20px auto 20px auto;
+    max-width: 800px;
 
     h2 {
         font-family: 'Montserrat', sans-serif;
@@ -99,7 +102,9 @@ header {
     }
 }
 
+
 footer {
+    margin-top: 30px;
     h2 {
         font-size: 16px;
         font-family: 'Montserrat', sans-serif;

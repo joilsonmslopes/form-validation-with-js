@@ -28,6 +28,8 @@ header h1 {
   border-radius: 20px;
   -webkit-box-shadow: 1px 3px 6px rgba(108, 49, 255, 0.3);
           box-shadow: 1px 3px 6px rgba(108, 49, 255, 0.3);
+  margin: 20px auto 20px auto;
+  max-width: 800px;
 }
 
 #form-submit h2 {
@@ -89,6 +91,10 @@ header h1 {
   left: 10px;
   font-size: 12px;
   font-family: 'Montserrat', sans-serif;
+}
+
+footer {
+  margin-top: 30px;
 }
 
 footer h2 {
